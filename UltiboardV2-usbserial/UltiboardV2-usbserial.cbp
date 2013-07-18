@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="UltiboardV2-usbserial" />
+		<Option pch_mode="2" />
+		<Option compiler="avrgcc" />
+		<Build>
+			<Target title="Release">
+				<Option output=".bin/Release/UltiboardV2-usbserial.elf" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output=".obj/Release/" />
+				<Option type="5" />
+				<Option compiler="avrgcc" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add directory="../" />
+				</Compiler>
+			</Target>
+			<Environment>
+				<Variable name="MCU" value="atmega1280" />
+			</Environment>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-mmcu=atmega16u2" />
+			<Add option="-std=gnu99" />
+			<Add option="-funsigned-char" />
+			<Add option="-funsigned-bitfields" />
+			<Add option="-ffunction-sections" />
+			<Add option="-fno-inline-small-functions" />
+			<Add option="-fpack-struct" />
+			<Add option="-fshort-enums" />
+			<Add option="-fno-strict-aliasing" />
+			<Add option="-Wstrict-prototypes" />
+			<Add option="-DF_CPU=16000000UL" />
+			<Add option="-DF_CLOCK=16000000UL" />
+			<Add option="-DUSB_DEVICE_ONLY" />
+			<Add option="-DFIXED_CONTROL_ENDPOINT_SIZE=8" />
+			<Add option="-DFIXED_NUM_CONFIGURATIONS=1" />
+			<Add option="-DUSE_FLASH_DESCRIPTORS" />
+			<Add option="-DINTERRUPT_CONTROL_ENDPOINT" />
+			<Add option="-DDEVICE_STATE_AS_GPIOR=0" />
+			<Add option='-DUSE_STATIC_OPTIONS=&quot;(USB_DEVICE_OPT_FULLSPEED | USB_OPT_REG_ENABLED | USB_OPT_AUTO_PLL)&quot;' />
+			<Add option='-DAVR_RESET_LINE_DDR=&quot;DDRD&quot;' />
+			<Add option='-DAVR_RESET_LINE_PORT=&quot;PORTD&quot;' />
+			<Add option='-DAVR_RESET_LINE_MASK=&quot;(1 &lt;&lt; 7)&quot;' />
+			<Add option="-DTX_RX_LED_PULSE_MS=3" />
+			<Add option="-DPING_PONG_LED_PULSE_MS=100" />
+		</Compiler>
+		<Linker>
+			<Add option="-mmcu=atmega16u2" />
+			<Add option="-Wl,-Map=$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).map,--cref" />
+			<Add option="-Wl,--relax" />
+			<Add option="-Wl,--gc-sections" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="avr-size --mcu=atmega1280 --format=avr $(TARGET_OUTPUT_FILE)" />
+			<Add after='cmd /c &quot;avr-objdump -h -S $(TARGET_OUTPUT_FILE) &gt; $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).lss&quot;' />
+			<Add after="avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).hex" />
+			<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).eep" />
+		</ExtraCommands>
+		<Unit filename="../Arduino-usbserial.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../Arduino-usbserial.h" />
+		<Unit filename="../Descriptors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../Descriptors.h" />
+		<Unit filename="../LUFA/Drivers/USB/Class/Device/CDC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/Class/Device/CDC.h" />
+		<Unit filename="../LUFA/Drivers/USB/Class/Host/CDC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/Class/Host/CDC.h" />
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/ConfigDescriptor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/ConfigDescriptor.h" />
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/DeviceStandardReq.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/DeviceStandardReq.h" />
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/Events.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/Events.h" />
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/HostStandardReq.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/HostStandardReq.h" />
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/USBTask.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/HighLevel/USBTask.h" />
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/Device.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/Device.h" />
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/Endpoint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/Endpoint.h" />
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/Host.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/Host.h" />
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/Pipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/Pipe.h" />
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/USBController.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/USBController.h" />
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/USBInterrupt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../LUFA/Drivers/USB/LowLevel/USBInterrupt.h" />
+		<Unit filename="../Lib/LightweightRingBuff.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
